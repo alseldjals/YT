@@ -10,9 +10,9 @@ import {
     MdChat,
  } from 'react-icons/md';
 
-const Sidebar = () => {
+const Sidebar = ({sidebar}) => {
     return (
-        <nav className='border border-danger sidebar'>
+        <nav className={sidebar ? 'sidebar open' : 'sidebar'}>
             <li>
                <MdHomeFilled size={23} />
                <span>홈</span>
