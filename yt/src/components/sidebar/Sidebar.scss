@@ -10,6 +10,8 @@
    height: 90vh;
    padding-top: 2rem;
 
+   transition: transform 0.2s ease-in;
+
 
    li {
       display: flex;
@@ -36,7 +38,7 @@
    }
 
    &.open{
-      display: block;
+      transform: translateX(0);
    }
 }
 
@@ -53,6 +55,9 @@
  }
 @media (max-width: $breakpoint-small) {
     .sidebar {
-       display: none;
+      transform: translateX(-100%);
+
+      position: fixed;
+      z-index: 999;
     }
  }

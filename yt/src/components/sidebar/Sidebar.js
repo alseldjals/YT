@@ -10,9 +10,10 @@ import {
     MdChat,
  } from 'react-icons/md';
 
-const Sidebar = ({sidebar}) => {
+const Sidebar = ({sidebar, handleToggleSidebar}) => {
     return (
-        <nav className={sidebar ? 'sidebar open' : 'sidebar'}>
+        <nav className={sidebar ? 'sidebar open' : 'sidebar'}
+         onClick={()=>handleToggleSidebar(false)} >
             <li>
                <MdHomeFilled size={23} />
                <span>홈</span>
