@@ -6,7 +6,7 @@ import Home from './screen/home/Home';
 import { Container } from 'react-bootstrap';
 import './App.scss';
 import Login from './screen/login/login';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 
 const Layout = ({children}) => {
   const [sidebar, toggleSidebar] = useState(false)
@@ -29,6 +29,7 @@ const Layout = ({children}) => {
 const App = () =>{
   return (
   <Router>
+   <Switch>
     <Route path='/' exact>
       <Layout>
         <Home />
@@ -40,9 +41,15 @@ const App = () =>{
 
   <Route path='/search'>
     <Layout>
-      <h1>서치 결과</h1>
+      <h1>검색 결과</h1>
     </Layout>
   </Route>
+
+  <Route>
+    <Redirect to='/'></Redirect>
+  </Route>
+
+  </Switch>
 
   </Router>
   )
