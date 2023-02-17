@@ -1,6 +1,6 @@
 import firebase from 'firebase/compat/app';
 import auth from '../../firebase';
-import { LOAD_PROFILE, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS } from '../actiontype';
+import { LOAD_PROFILE, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, } from '../actiontype';
 
 export const login = () => async dispatch => {
     try {
@@ -19,6 +19,9 @@ export const login = () => async dispatch => {
             name: res.additionalUserInfo.profile.displayName,
             pthotoURL:res.additionalUserInfo.profile.photoURL,
         }
+        sessionStorage.setItem('ytc-access-token',accessToken)
+        sessionStorage.setItem('ytc-user',JSON.stringify(profile))
+
         dispatch ({
             type: LOGIN_SUCCESS,
             payload: accessToken

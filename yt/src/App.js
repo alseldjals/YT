@@ -1,12 +1,13 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
 import Home from './screen/home/Home';
 import { Container } from 'react-bootstrap';
 import './App.scss';
 import Login from './screen/login/login';
-import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory} from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Layout = ({children}) => {
   const [sidebar, toggleSidebar] = useState(false)
@@ -26,9 +27,19 @@ const Layout = ({children}) => {
     </>
   )
 }
-const App = () =>{
+const App = () => {
+  const { accessToken, loading } = useSelector(state => state.auth)
+
+  const history = useHistory()
+
+  useEffect(() => {
+     if (!loading && !accessToken) {
+        history.push('/auth')
+     }
+  }, [accessToken, loading, history])
+ 
   return (
-  <Router>
+  
    <Switch>
     <Route path='/' exact>
       <Layout>
@@ -51,7 +62,7 @@ const App = () =>{
 
   </Switch>
 
-  </Router>
+  
   )
   
 }
